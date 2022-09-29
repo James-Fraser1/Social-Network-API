@@ -17,15 +17,15 @@ const reactionSchema = new Schema(
             type: String,
             required: true,
         },
-        reactions: [
-            {
-                type: reactionSchema.Types.ObjectId,
-                ref: "reactions",
-            },
-        ],
+        createdAt: {
+            type: Date,
+            default: Date.now,
+            get: createdAtVal => moment(createdAtVal).format("MMM DD, YYYY [at] hh:mm a"),
+        },
     },
     {
         toJSON: {
+            virtuals: true,
             getters: true,
         },
     }
