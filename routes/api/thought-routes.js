@@ -9,13 +9,11 @@ const {
 } = require('../../controllers/thought-controller');
 const { getUserByID } = require('../../controllers/user-controller');
 
-router
- .route('/')
+router.route('/')
  .get(getAllThoughts)
  .post(createThought);
 
-router
-.route('/:id')
+router.route('/:id')
 .get(getThoughtByID)
 .put(updateThought)
 .delete(deleteThought);
