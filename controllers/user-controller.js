@@ -67,8 +67,8 @@ const userController = {
 
     addFriend({ params }, res) {
         User.findOneAndUpdate(
-            { _id: params.userId },
-            { $addToSet: { friends: params.friendId } },
+            { _id: params.userID },
+            { $addToSet: { friends: params.friendID } },
             { new: true, runValidators: true }
         )
         .then(dbUserData => {
@@ -78,8 +78,8 @@ const userController = {
             }
 
             User.findOneAndUpdate(
-                { _id: params.friendId },
-                { $addToSet: { friends: params.userId } },
+                { _id: params.friendID },
+                { $addToSet: { friends: params.userID } },
                 { new: true, runValidators: true }
             )
             .then(dbFriendData => {
@@ -96,8 +96,8 @@ const userController = {
 
     deleteFriend({ params }, res) {
         User.findOneAndUpdate(
-            { _id: params.userId },
-            { $pull: { friends: params.friendId } },
+            { _id: params.userID },
+            { $pull: { friends: params.friendID } },
             { new: true, runValidators: true }
         )
         .then(dbUserData => {
@@ -107,8 +107,8 @@ const userController = {
             }
 
             User.findOneAndUpdate(
-                { _id: params.friendId },
-                { $pull: { friends: params.userId } },
+                { _id: params.friendID },
+                { $pull: { friends: params.userID } },
                 { new: true, runValidators: true }
             )
             .then(dbFriendData => {
